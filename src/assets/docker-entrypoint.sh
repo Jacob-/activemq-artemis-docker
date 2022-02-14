@@ -74,7 +74,7 @@ if [ "$ARTEMIS_USERNAME" ] && [ "$ARTEMIS_PASSWORD" ]; then
 
   # 2.16.0 and later are set using the cli with a running broker
   if semver_greater_or_equal_than "${ACTIVEMQ_ARTEMIS_VERSION}" 2.15.0 ; then
-    HASHED_PASSWORD=$(${BROKER_HOME}/bin/artemis mask --hash "${ARTEMIS_PASSWORD}" | cut -d " " -f 2)
+    HASHED_PASSWORD=$(${BROKER_HOME}/bin/artemis mask --hash "${ARTEMIS_PASSWORD}" | grep "^result" | cut -d " " -f 2)
     sed -i "s/artemis[ ]*=.*/$ARTEMIS_USERNAME=ENC($HASHED_PASSWORD)\\n/g" ../etc/artemis-users.properties
   elif semver_greater_or_equal_than "${ACTIVEMQ_ARTEMIS_VERSION}" 1.5.0 ; then
     # 1.5.0 to 2.14.0 modified the users file directly and therefore didn't need a running broker
@@ -112,8 +112,8 @@ mergeXmlFiles() {
 }
 
 files=$(find $OVERRIDE_PATH -name "broker*" -type f | sort -u );
-if [ ${#files[@]} ]; then
-  for f in $files; do
+for f in $files; do
+    echo $f
     fnoext=${f%.*}
     if [ -f "$fnoext.xslt" ]; then
       xmlstarlet tr "$fnoext.xslt" $CONFIG_PATH/broker.xml > /tmp/broker-tr.xml
@@ -122,10 +122,7 @@ if [ ${#files[@]} ]; then
     if [ -f "$fnoext.xml" ]; then
       mergeXmlFiles "$CONFIG_PATH/broker.xml" "$fnoext.xml" "$CONFIG_PATH/broker.xml"
     fi
-  done
-else
-  echo No configuration snippets found
-fi
+done
 
 if [ "$ENABLE_JMX" ] || [ "$ENABLE_JMX_EXPORTER" ]; then
   prepend_java_arg "com.sun.management.jmxremote" "-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=${JMX_PORT:-1099} -Dcom.sun.management.jmxremote.rmi.port=${JMX_RMI_PORT:-1098} -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false"
@@ -228,12 +225,10 @@ rm -f /tmp/brokerconfigs.txt
 export BROKER_CONFIGS
 
 files=$(find $OVERRIDE_PATH -name "entrypoint*.sh" -type f | sort -u );
-if [ ${#files[@]} ]; then
-  for f in $files; do
+for f in $files; do
     echo "Processing entrypoint override: $f"
     /bin/sh "$f"
-  done
-fi
+done
 
 if [ "$1" = 'artemis-server' ]; then
   exec dumb-init -- sh ./artemis run
