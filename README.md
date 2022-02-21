@@ -8,11 +8,12 @@
 
 ## 2. Tags and `Dockerfile` links
 
-| Debian Based                                                                                 | Alpine Based                                                                                               |
-|--------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Debian Based                                                                                       | Alpine Based                                                                                                     |
+|----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
 | [`latest`](https://raw.githubusercontent.com/jacob-/activemq-artemis-docker/master/src/Dockerfile) | [`latest-alpine`](https://raw.githubusercontent.com/jacob-/activemq-artemis-docker/master/src/Dockerfile.alpine) |
-| [`2.18.0`](https://raw.githubusercontent.com/jacob-/activemq-artemis-docker/master/src/Dockerfile)  | [`2.16.0-alpine`](https://raw.githubusercontent.com/jacob-/activemq-artemis-docker/master/src/Dockerfile.alpine)  |
-| [`2.16.0`](https://raw.githubusercontent.com/jacob-/activemq-artemis-docker/master/src/Dockerfile)  | [`2.16.0-alpine`](https://raw.githubusercontent.com/jacob-/activemq-artemis-docker/master/src/Dockerfile.alpine)  |
+| [`2.20.0`](https://raw.githubusercontent.com/jacob-/activemq-artemis-docker/master/src/Dockerfile) | [`2.20.0-alpine`](https://raw.githubusercontent.com/jacob-/activemq-artemis-docker/master/src/Dockerfile.alpine) |
+| [`2.18.0`](https://raw.githubusercontent.com/jacob-/activemq-artemis-docker/master/src/Dockerfile) | [`2.18.0-alpine`](https://raw.githubusercontent.com/jacob-/activemq-artemis-docker/master/src/Dockerfile.alpine) |
+| [`2.16.0`](https://raw.githubusercontent.com/jacob-/activemq-artemis-docker/master/src/Dockerfile) | [`2.16.0-alpine`](https://raw.githubusercontent.com/jacob-/activemq-artemis-docker/master/src/Dockerfile.alpine) |
 
 ## 3. About this image
 

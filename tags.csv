@@ -1,5 +1,7 @@
 Repository,Tag,Base Image,Aliases,Dockerfile
 jhatdv/activemq-artemis,2.16.0,openjdk:8u232-jre-stretch,jhatdv/activemq-artemis:2.16-latest,Dockerfile
 jhatdv/activemq-artemis,2.16.0-alpine,openjdk:8u212-jre-alpine3.9,jhatdv/activemq-artemis:2.16-alpine-latest,Dockerfile.alpine
-jhatdv/activemq-artemis,2.18.0,openjdk:8u232-jre-stretch,jhatdv/activemq-artemis:2.18-latest jhatdv/activemq-artemis:2-latest jhatdv/activemq-artemis:latest,Dockerfile
-jhatdv/activemq-artemis,2.18.0-alpine,openjdk:8u212-jre-alpine3.9,jhatdv/activemq-artemis:2.18-alpine-latest jhatdv/activemq-artemis:2-alpine-latest jhatdv/activemq-artemis:alpine-latest,Dockerfile.alpine
+jhatdv/activemq-artemis,2.18.0,openjdk:8u232-jre-stretch,jhatdv/activemq-artemis:2.18-latest,Dockerfile
+jhatdv/activemq-artemis,2.18.0-alpine,openjdk:8u212-jre-alpine3.9,jhatdv/activemq-artemis:2.18-alpine-latest,Dockerfile.alpine
+jhatdv/activemq-artemis,2.20.0,openjdk:8u232-jre-stretch,jhatdv/activemq-artemis:2.20-latest jhatdv/activemq-artemis:2-latest jhatdv/activemq-artemis:latest,Dockerfile
+jhatdv/activemq-artemis,2.20.0-alpine,openjdk:8u212-jre-alpine3.9,jhatdv/activemq-artemis:2.20-alpine-latest jhatdv/activemq-artemis:2-alpine-latest jhatdv/activemq-artemis:alpine-latest,Dockerfile.alpine
