@@ -111,6 +111,13 @@ mergeXmlFiles() {
   mv /tmp/broker-merge.xml "$3"
 }
 
+xmlstarlet ed -L \
+  -N activemq="http://activemq.org/schema" \
+  -u "/activemq:broker/activemq:web/activemq:binding/@uri" \
+  -v "http://0.0.0.0:8161" $CONFIG_PATH/bootstrap.xml
+
+#sed -i -e 's/localhost:8161/0.0.0.0:8161/' /var/lib/artemis/etc/bootstrap.xml
+
 files=$(find $OVERRIDE_PATH -name "broker*" -type f | sort -u );
 for f in $files; do
     echo $f
