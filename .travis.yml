@@ -1,5 +1,6 @@
 language: bash
 services: docker
+dist: focal
 
 env:
   - VERSION=2.16.0
