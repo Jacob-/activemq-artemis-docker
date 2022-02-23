@@ -18,12 +18,10 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN apt-get -qq -o=Dpkg::Use-Pty=0 update && \
   apt-get -qq -o=Dpkg::Use-Pty=0 install -y --no-install-recommends \
-    libaio1 \
-    xmlstarlet \
-    jq \
-    ca-certificates \
-    wget \
-    ivy && \
+    libaio1=0.3.112-3 \
+    xmlstarlet=1.6.1-2 \
+    jq=1.5+dfsg-2+b1 \
+    ivy=2.4.0-5 && \
   rm -rf /var/lib/apt/lists/*
 
 # Make sure pipes are considered to detemine success, see: https://github.com/hadolint/hadolint/wiki/DL4006
@@ -140,12 +138,12 @@ RUN groupadd -g 1000 -r artemis && useradd -r -u 1000 -g artemis artemis
 
 RUN apt-get -qq -o=Dpkg::Use-Pty=0 update && \
   apt-get -qq -o=Dpkg::Use-Pty=0 install -y --no-install-recommends \
-    libaio1 \
-    xmlstarlet \
-    jq \
-    gettext-base \
-    dumb-init \
-    procps && \
+    libaio1=0.3.112-3 \
+    xmlstarlet=1.6.1-2 \
+    jq=1.5+dfsg-2+b1 \
+    gettext-base=0.19.8.1-9 \
+    dumb-init=1.2.2-1.1 \
+    procps=2:3.3.15-2 && \
   rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder "/opt/apache-artemis-${ACTIVEMQ_ARTEMIS_VERSION}" "/opt/apache-artemis-${ACTIVEMQ_ARTEMIS_VERSION}"

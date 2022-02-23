@@ -18,12 +18,10 @@ RUN groupadd -g 2000 -r artemis && useradd -u 1000 -r -s /bin/false -g artemis a
 
 RUN apt-get -qq -o=Dpkg::Use-Pty=0 update && \
   apt-get -qq -o=Dpkg::Use-Pty=0 install -y --no-install-recommends \
-    libaio1 \
-    xmlstarlet \
-    jq \
-    ca-certificates \
-    wget \
-    ivy && \
+    libaio1=0.3.112-3 \
+    xmlstarlet=1.6.1-2 \
+    jq=1.5+dfsg-2+b1 \
+    ivy=2.4.0-5 && \
   rm -rf /var/lib/apt/lists/*
 
 # Make sure pipes are considered to detemine success, see: https://github.com/hadolint/hadolint/wiki/DL4006
@@ -144,12 +142,12 @@ RUN addgroup -g 1000 -S artemis && adduser -u 1000 -S -G artemis artemis
 # Sadly this line is likely to fail every so often, see: https://medium.com/@stschindler/the-problem-with-docker-and-alpines-package-pinning-18346593e891
 # Still versions are pinned to maintain some small level of https://reproducible-builds.org/
 RUN apk add --no-cache \
-  libaio \
-  xmlstarlet \
-  jq \
-  dumb-init \
-  sed \
-  gettext
+  libaio=0.3.112-r1 \
+  xmlstarlet=1.6.1-r0 \
+  jq=1.6-r1 \
+  dumb-init=1.2.5-r1 \
+  sed=4.8-r0 \
+  gettext=0.21-r0
 
 COPY --from=builder "/opt/apache-artemis-${ACTIVEMQ_ARTEMIS_VERSION}" "/opt/apache-artemis-${ACTIVEMQ_ARTEMIS_VERSION}"
 COPY --from=builder "/var/lib/artemis" "/var/lib/artemis"
