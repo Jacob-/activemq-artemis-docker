@@ -120,7 +120,6 @@ xmlstarlet ed -L \
 
 files=$(find $OVERRIDE_PATH -name "broker*" -type f | sort -u );
 for f in $files; do
-    echo $f
     fnoext=${f%.*}
     if [ -f "$fnoext.xslt" ]; then
       xmlstarlet tr "$fnoext.xslt" $CONFIG_PATH/broker.xml > /tmp/broker-tr.xml
