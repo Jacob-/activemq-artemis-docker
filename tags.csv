@@ -1,5 +1,2 @@
 Repository,Tag,Base Image,Aliases,Dockerfile
-jhatdv/activemq-artemis,2.18.0,openjdk:11-jdk-buster,jhatdv/activemq-artemis:2.18-latest,Dockerfile
-jhatdv/activemq-artemis,2.18.0-alpine,adoptopenjdk/openjdk11:alpine,jhatdv/activemq-artemis:2.18-alpine-latest,Dockerfile.alpine
-jhatdv/activemq-artemis,2.20.0,openjdk:11-jdk-buster,jhatdv/activemq-artemis:2.20-latest jhatdv/activemq-artemis:2-latest jhatdv/activemq-artemis:latest,Dockerfile
 jhatdv/activemq-artemis,2.20.0-alpine,alpine:3.15,jhatdv/activemq-artemis:2.20-alpine-latest jhatdv/activemq-artemis:2-alpine-latest jhatdv/activemq-artemis:alpine-latest,Dockerfile.alpine.jre11
