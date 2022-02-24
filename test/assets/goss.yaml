@@ -139,8 +139,6 @@ file:
     contains:
       - "-Djava.net.preferIPv4Addresses=true"
       - "-XX:+UnlockExperimentalVMOptions"
-      - "-XX:+UseCGroupMemoryLimitForHeap"
-      - "-XX:MaxRAMFraction=2"
 {{if getEnv "JAVA_OPTS" }}
       - "-Djavax.net.ssl.keyStore=/var/lib/artemis/etc/keystore.jks"
       - "-Djavax.net.ssl.keyStorePassword=changeit"
