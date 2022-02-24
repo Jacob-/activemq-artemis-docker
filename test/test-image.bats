@@ -76,7 +76,8 @@
 	# Seems like Docker plays well with the Apple's filesystem sandbox guidelines but mktemp doesn't?
 	# Using mkdir instead of mktemp
 	# see: https://stackoverflow.com/questions/45122459/docker-mounts-denied-the-paths-are-not-shared-from-os-x-and-are-not-known
-  	TMP_DIR=$(mkdir -p tmp)
+	$(mkdir -p tmp)
+	TMP_DIR=$(pwd)/tmp/
 	GOSS_FILES_PATH=$BATS_TEST_DIRNAME/assets GOSS_VARS="vars.yaml" dgoss run -it --rm -h testHostName.local -v "${TMP_DIR}:/var/lib/artemis/etc" -e RESTORE_CONFIGURATION=true ${COORDINATES}
 	rm -Rf "${TMP_DIR}"
 }
