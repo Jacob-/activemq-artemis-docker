@@ -14,7 +14,7 @@ ENV JGROUPS_KUBERNETES_VERSION=0.9.3
 ENV JAVAX_JSON_VERSION=1.1.4
 
 # add user and group for artemis
-RUN groupadd -r artemis && useradd -r -s /bin/false -g artemis artemis
+RUN groupadd -g 2000 -r artemis && useradd -u 1000 -r -s /bin/false -g artemis artemis
 
 RUN apt-get -qq -o=Dpkg::Use-Pty=0 update && \
   apt-get -qq -o=Dpkg::Use-Pty=0 install -y --no-install-recommends \
