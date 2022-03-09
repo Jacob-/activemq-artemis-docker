@@ -3,6 +3,7 @@ services: docker
 dist: focal
 
 env:
+  - VERSION=2.19.1 VARIANT=alpine
   - VERSION=2.20.0 VARIANT=alpine
 
 
