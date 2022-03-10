@@ -74,7 +74,8 @@
 
 @test "docker container can replace etc" {
 	ARTEMIS_CONFIG_DIRNAME=$PWD/.artemis-etc/
-	mkdir -p $ARTEMIS_CONFIG_DIRNAME
+	echo "Creating new empty directory to bind: $ARTEMIS_CONFIG_DIRNAME"
+	mkdir $ARTEMIS_CONFIG_DIRNAME
 	GOSS_FILES_PATH=$BATS_TEST_DIRNAME/assets GOSS_VARS="vars.yaml" dgoss run -it --rm -h testHostName.local -v $ARTEMIS_CONFIG_DIRNAME:/var/lib/artemis/etc -e RESTORE_CONFIGURATION=true ${COORDINATES}
 	rm -Rf $ARTEMIS_CONFIG_DIRNAME
 }
