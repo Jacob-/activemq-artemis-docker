@@ -1,5 +1,17 @@
 #!/usr/bin/env bats
 
+setup() {
+	echo "Running setup()..."
+	BATS_TMPDIR="$(mktemp -d)"
+}
+
+teardown() {
+	echo "Running teardown()..."
+	if [ -d "$BATS_TMPDIR/.artemis-test" ]; then
+		rm -rf "$BATS_TMPDIR/.artemis-test"
+	fi
+}
+
 @test "docker container can run with no arguments" {
   	GOSS_FILES_PATH=$BATS_TEST_DIRNAME/assets GOSS_VARS="vars.yaml" dgoss run -it --rm -h testHostName.local ${COORDINATES}
 }
@@ -73,9 +85,14 @@
 }
 
 @test "docker container can replace etc" {
-	ARTEMIS_CONFIG_DIRNAME=$PWD/.artemis-etc/
+	@test "docker container can replace etc" {
+	ARTEMIS_CONFIG_DIRNAME=$PWD/.artemis-etc-$(date +%s)/
 	echo "Creating new empty directory to bind: $ARTEMIS_CONFIG_DIRNAME"
 	mkdir $ARTEMIS_CONFIG_DIRNAME
-	GOSS_FILES_PATH=$BATS_TEST_DIRNAME/assets GOSS_VARS="vars.yaml" dgoss run -it --rm -h testHostName.local -v $ARTEMIS_CONFIG_DIRNAME:/var/lib/artemis/etc -e RESTORE_CONFIGURATION=true ${COORDINATES}
+	CONTAINER_LOG_OUTPUT="/tmp/artemis-docker-log-$(date +%s).log"
+	RETURN_CODE=$(CONTAINER_LOG_OUTPUT=$CONTAINER_LOG_OUTPUT GOSS_FILES_PATH=$BATS_TEST_DIRNAME/assets GOSS_VARS="vars.yaml" dgoss run -it --rm -h testHostName.local -v $ARTEMIS_CONFIG_DIRNAME:/var/lib/artemis/etc -e RESTORE_CONFIGURATION=true ${COORDINATES} > /dev/null ; echo $? ; exit 0)
 	rm -Rf $ARTEMIS_CONFIG_DIRNAME
+	echo "Container log output:"
+	cat "${CONTAINER_LOG_OUTPUT}" >&3
+	exit "${RETURN_CODE}"
 }
