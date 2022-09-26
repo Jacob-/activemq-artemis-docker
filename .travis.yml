@@ -4,7 +4,7 @@ dist: focal
 
 env:
   - VERSION=2.19.1 VARIANT=alpine
-  - VERSION=2.20.0 VARIANT=alpine
+  - VERSION=2.25.0 VARIANT=alpine
 
 
 before_install:
